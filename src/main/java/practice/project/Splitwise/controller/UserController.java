@@ -3,15 +3,13 @@ package practice.project.Splitwise.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.security.SecurityProperties.User;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import practice.project.Splitwise.dto.*;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
-import practice.project.Splitwise.dto.AddUserToGroupDTO;
-import practice.project.Splitwise.dto.UsersCreationDTO;
-import practice.project.Splitwise.dto.UserResponseDTO;
 import practice.project.Splitwise.service.UserService;
 
 @RestController
@@ -28,6 +26,8 @@ public class UserController {
 
     @PostMapping("/createUser")
     public UserResponseDTO createUser(@RequestBody UsersCreationDTO usersCreationDTO) {
+        System.out.println(
+                "usersCreationDTO: name: " + usersCreationDTO.getName() + " email: " + usersCreationDTO.getEmail());
         return userService.createUser(usersCreationDTO);
     }
 
